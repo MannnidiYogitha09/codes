@@ -1,0 +1,38 @@
+from collections import deque
+
+class Solution(object):
+    def numEnclaves(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        n = len(grid)
+        m = len(grid[0])
+        
+        vis = [[0] * m for _ in range(n)]
+        q = deque()
+        
+        # Step 1: Push all boundary 1's into queue
+        for i in range(n):
+            for j in range(m):
+                if (i == 0 or j == 0 or i == n - 1 or j == m - 1) and grid[i][j] == 1:
+                    q.append((i, j))
+                    vis[i][j] = 1
+        
+        # Step 2: BFS to mark all reachable land cells
+        while q:
+            row, col = q.popleft()
+            for dr, dc in [[1, 0], [-1, 0], [0, 1], [0, -1]]:
+                nr, nc = row + dr, col + dc
+                if 0 <= nr < n and 0 <= nc < m and grid[nr][nc] == 1 and not vis[nr][nc]:
+                    vis[nr][nc] = 1
+                    q.append((nr, nc))
+        
+        # Step 3: Count remaining unvisited land (enclaves)
+        count = 0
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j] == 1 and vis[i][j] == 0:
+                    count += 1
+        
+        return count
