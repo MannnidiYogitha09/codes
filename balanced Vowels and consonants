@@ -1,0 +1,21 @@
+def BalVandC(s):
+    vowels=[]
+    c=0
+    v1=0
+    consonants=[]
+    v="aeiou"
+    x=[]
+    for ch in s:
+        if ch in v:
+            vowels.append(ch)
+        else:
+            consonants.append(ch)
+    for i in range(len(s)):
+        if i%2==0:
+            x.append(consonants[c])
+            c+=1
+        else:
+            x.append(vowels[v1])
+            v1+=1
+    return "".join(x)
+print(BalVandC("beauty"))
