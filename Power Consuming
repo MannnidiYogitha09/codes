@@ -1,0 +1,14 @@
+from math import gcd
+def destroy(n,list1):
+    def bt(arr):
+        n=len(arr)
+        ans=float('inf')
+        mid=n//2
+        if n<=1:
+            return 0
+        if mid!=0:
+            new_arr=arr[:]
+            cost=gcd(new_arr[0],new_arr[mid])
+            new_arr.pop(mid)
+            new_arr.pop(0)
+            ans=min
