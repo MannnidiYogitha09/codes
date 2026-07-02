@@ -1,0 +1,6 @@
+def isAnagram(S,T):
+    if sorted(S)==sorted(T):
+        return("Anagram")
+    else:
+        return("Not Anagram")
+print(isAnagram("silent","listen"))
