@@ -1,0 +1,9 @@
+from collections import Counter
+S='tree'
+d=Counter(S)
+new_lst=sorted(d.items(),key=lambda x: -x[1])
+res=''
+for key,value in new_lst:
+    for _ in range(value):
+        res+=key
+print(res)
